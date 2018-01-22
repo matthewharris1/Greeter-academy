@@ -6,15 +6,16 @@ import scala.io.StdIn
   */
 object GreeterApplication extends App {
 
- def greet(name: String): Unit = {
+ def greet(name: String, age: Int): Unit = {
    if (name == "Matthew") {
-     println("Hello Matthew")
+     println(s"Hello Matthew, you are $age years old")
     } else {
-     println(s"Hello $name")
+     println(s"Hello $name I don't know how old you are")
    }
  }
 
  val name = StdIn.readLine("What is your name? ")
+  val age = 21
 
-  greet(name)
+  greet(name, age)
 }
