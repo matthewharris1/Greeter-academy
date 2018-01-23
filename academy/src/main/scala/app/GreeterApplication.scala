@@ -7,11 +7,13 @@ import scala.io.StdIn
 
 class Person(name: String, age: Int) {
 
+  private val years : String = if(age == 1) "year" else "years"
+
   def greet() : Unit = {
     if (name == "Matthew") {
-      println(s"Hello Matthew, you are $age years old")
+      println(s"Jog on Matthew you are $age $years old.")
     } else {
-      println(s"Hello $name I don't know how old you are")
+      println(s"Hello $name, you are $age $years old")
     }
   }
 }
@@ -19,14 +21,16 @@ class Person(name: String, age: Int) {
 object Prompt {
 
   def name(message: String) : String= StdIn.readLine(message)
+  def age(m: String) = StdIn.readLine(m).toInt
 
 }
 object GreeterApplication extends App {
 
     val name = Prompt.name("What is your name? ")
+    val age = Prompt.age("What is your age? ")
 
 
-    val Matt = new Person(name, 21)
+    val Matt = new Person(name, age)
 
     println(Matt.greet())
 
