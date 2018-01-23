@@ -4,7 +4,7 @@
 		module="academy-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20180122102418"
+		publication="20180123113420"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
