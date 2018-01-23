@@ -20,15 +20,10 @@ object Prompt {
 
   def name(message: String) : String= StdIn.readLine(message)
 
-  def age() = StdIn.readLine().toInt
-
 }
 object GreeterApplication extends App {
 
-    val name = {
-      Prompt.name("What is your name? ")
-      Prompt.age().toString
-    }
+    val name = Prompt.name("What is your name? ")
 
 
     val Matt = new Person(name, 21)
