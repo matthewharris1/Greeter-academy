@@ -66,8 +66,8 @@
       <file leaf-file-name="Hero.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/Hero.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+            <state relative-caret-position="-738">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -92,6 +92,14 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>character</find>
+      <find>Character</find>
+      <find>enem</find>
+      <find>Enemy</find>
+    </findStrings>
+  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -103,9 +111,9 @@
         <option value="$PROJECT_DIR$/src/main/scala/app/GreeterApplication.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/StudentApp.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/Animals.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/app/Hero.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/package.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/Board.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/app/Hero.scala" />
       </list>
     </option>
   </component>
@@ -740,8 +748,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/Hero.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        <state relative-caret-position="-738">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -14,7 +14,7 @@ class Mana (amount: Int) extends Resource (amount)
 class Rage (amount: Int) extends Resource (amount)
 class Gold (amount: Int) extends Resource (amount)
 
-abstract class Character (health: Int, resource: Resource, var cPos: Point) {
+abstract class Alliance (health: Int, resource: Resource, var cPos: Point) {
 
   def move(pos: Point)= {
     val diffX = Math.abs(pos.x - cPos.x)
@@ -30,15 +30,15 @@ abstract class Character (health: Int, resource: Resource, var cPos: Point) {
 
   def attack(): String
 }
-class Mage (health: Int, resource: Mana, sPos: Point) extends Character (health, resource, sPos) {
+class Mage (health: Int, resource: Mana, sPos: Point) extends Alliance (health, resource, sPos) {
 
   override def attack() = "I cast a spell"
 }
-class Cleric (health: Int, resource: Mana, sPos: Point) extends Character (health, resource, sPos) {
+class Cleric (health: Int, resource: Mana, sPos: Point) extends Alliance (health, resource, sPos) {
 
   override def attack() = "I cast a heal spell"
 }
-class Warrior (health: Int, resource: Rage, sPos: Point) extends Character (health, resource, sPos) {
+class Warrior (health: Int, resource: Rage, sPos: Point) extends Alliance (health, resource, sPos) {
 
   override def attack() = "I do a melee attack"
 
@@ -54,19 +54,19 @@ class Warrior (health: Int, resource: Rage, sPos: Point) extends Character (heal
     }
   }
 }
-class Paladin (health: Int, resource: Mana, sPos: Point) extends Character (health, resource, sPos) {
+class Paladin (health: Int, resource: Mana, sPos: Point) extends Alliance (health, resource, sPos) {
 
   override def attack() = "I cast a damaging Spell "
 
   def heal() = "I heal for 50 health"
 }
-abstract class Enemy (health: Int, resource: Gold, sPos: Point) extends Character (health, resource, sPos) {
+abstract class Horde (health: Int, resource: Gold, sPos: Point) extends Alliance (health, resource, sPos) {
 
 }
-class DemonDog (health: Int, resource: Gold, sPos: Point) extends Enemy (health, resource, sPos) {
+class DemonDog (health: Int, resource: Gold, sPos: Point) extends Horde (health, resource, sPos) {
   override def attack() = "Bite"
 }
-class NightborneElf (health: Int, resource: Gold,sPos: Point) extends Enemy (health, resource, sPos) {
+class NightborneElf (health: Int, resource: Gold,sPos: Point) extends Horde (health, resource, sPos) {
 
   override def attack() = "I cast void bolt"
 
@@ -82,11 +82,11 @@ class NightborneElf (health: Int, resource: Gold,sPos: Point) extends Enemy (hea
     }
   }
 }
-class Orc (health: Int, resource: Gold, sPos: Point) extends Enemy (health, resource, sPos) {
+class Orc (health: Int, resource: Gold, sPos: Point) extends Horde (health, resource, sPos) {
 
   override def attack() = "Swings Sword"
 }
-class LesserDemon (health: Int, resource: Gold, sPos: Point) extends Enemy (health, resource, sPos) {
+class LesserDemon (health: Int, resource: Gold, sPos: Point) extends Horde (health, resource, sPos) {
 
   override def attack() = "Consume Soul"
 }
