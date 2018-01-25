@@ -46,11 +46,11 @@ class Warrior (health: Int, resource: Rage, sPos: Point) extends Alliance (healt
     val diffX = Math.abs(pos.x - cPos.x)
     val diffY = pos.y - cPos.y
 
-    if ((diffX <= 5) || (diffY <= 1)) {
-      println("You can only charge along 5 slots!")
-    } else {
+    if ((diffX <= 5) && (diffY <= 1)) {
       cPos = pos
       cPos
+    } else {
+      println("You can only charge along 5 slots!")
     }
   }
 }
@@ -74,7 +74,7 @@ class NightborneElf (health: Int, resource: Gold,sPos: Point) extends Horde (hea
     val diffX = Math.abs(pos.x - cPos.x)
     val diffY = Math.abs(pos.y - cPos.y)
 
-    if ((diffX <= 3) & (diffY <= 3)) {
+    if ((diffX <= 3) && (diffY <= 3)) {
       cPos = pos
       cPos
     } else {
