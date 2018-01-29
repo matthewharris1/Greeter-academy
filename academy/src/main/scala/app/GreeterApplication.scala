@@ -39,7 +39,11 @@ class cashISAAccount(accountNumber: String, balance: Double) extends bankAccount
     this
   }
 }
-    class Person(name: String, age: Int) {
+    class Person(name: String, age: Int, private val bankAccount: bankAccount) {
+
+      def this(name: String, age: Int) = this(name: String, age: Int, new savingsAccount("123", 0.00))
+
+      def this(name: String) = this(name: String, age = 0, new savingsAccount("123", 50.00))
 
       private val years: String = if (age == 1) "year" else "years"
 
@@ -47,7 +51,7 @@ class cashISAAccount(accountNumber: String, balance: Double) extends bankAccount
         if (name == "Matthew") {
           println(s"Jog on Matthew you are $age $years old.")
         } else {
-          println(s"Hello $name, you are $age $years old")
+          println(s"Hello $name, you are $age $years old. \n You have ${bankAccount.balance}")
         }
       }
     }
@@ -61,19 +65,17 @@ class cashISAAccount(accountNumber: String, balance: Double) extends bankAccount
     }
     object GreeterApplication extends App {
 
+
       val name = Prompt.name("What is your name? ")
       val age = Prompt.age("What is your age? ")
-
       val Matt = new Person(name, age)
-
       println(Matt.greet())
-
       val SavingsAccount = new savingsAccount("12345", 99)
       val savingPlus100 = SavingsAccount.withdraw(100.00)
-
       val ISAaccount = new cashISAAccount("54321", 50.00)
       val ISAPlus100 = ISAaccount.deposit(100.00)
-
       println(SavingsAccount.balance)
       println(savingPlus100.balance)
+      val David = new Person("David")
+      println(David)
     }

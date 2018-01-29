@@ -8,13 +8,13 @@ class Point (val x: Int, val y: Int) {
 
 }
 
-abstract class Resource (amount: Int)
+abstract class Resource (val amount: Int)
 
 class Mana (amount: Int) extends Resource (amount)
 class Rage (amount: Int) extends Resource (amount)
 class Gold (amount: Int) extends Resource (amount)
 
-abstract class Alliance (health: Int, resource: Resource, var cPos: Point) {
+abstract class Alliance (val health: Int, resource: Resource, var cPos: Point) {
 
   def move(pos: Point)= {
     val diffX = Math.abs(pos.x - cPos.x)
@@ -28,11 +28,22 @@ abstract class Alliance (health: Int, resource: Resource, var cPos: Point) {
     }
   }
 
-  def attack(): String
-}
-class Mage (health: Int, resource: Mana, sPos: Point) extends Alliance (health, resource, sPos) {
+  def attack()
 
-  override def attack() = "I cast a spell"
+}
+class Mage (health: Int, val resource: Mana, sPos: Point, val attackDamage: Int = 30) extends Alliance (health, resource, sPos) {
+  val spellCost = 25
+  override def attack() = {
+    if ((resource.amount - spellCost) < 0) {
+      println("You do not have enough mana to cast this spell")
+      this
+    } else {
+      val deducted = resource.amount - spellCost
+      val newInstance = new Mage(health, new Mana(deducted), sPos)
+      println(s"You cast a spell. You have ${newInstance.resource.amount} Mana left")
+      newInstance
+    }
+  }
 }
 class Cleric (health: Int, resource: Mana, sPos: Point) extends Alliance (health, resource, sPos) {
 
@@ -87,14 +98,16 @@ class Orc (health: Int, resource: Gold, sPos: Point) extends Horde (health, reso
   override def attack() = "Swings Sword"
 }
 class LesserDemon (health: Int, resource: Gold, sPos: Point) extends Horde (health, resource, sPos) {
-
   override def attack() = "Consume Soul"
 }
 
 
-
 object Hero extends App {
-  val Michael = new Mage(100, new Mana(175), new Point(1, 1))
+
+  def battle(attacker: Alliance, defender: Horde) = {
+    attacker.attack()
+  }
+  val Michael = new Mage(100, new Mana(180), new Point(1, 1))
   val John = new Cleric(80, new Mana(200), new Point(1, 3))
   val Connor = new Warrior(150, new Rage(75), new Point(2, 2))
   val Josh = new Paladin(125, new Mana(130), new Point(4, 4))
@@ -105,6 +118,7 @@ object Hero extends App {
   val Shannon = new LesserDemon(400, new Gold(510), new Point (5, 5))
 
   println(Michael.attack())
+
   println(John.attack())
   println(Pan.move(new Point(Pan.cPos.x + -1, Pan.cPos.y + 0)))
   println(Pan.cPos)
