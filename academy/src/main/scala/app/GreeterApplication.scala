@@ -1,60 +1,8 @@
 package app
 
+import app.Models.{Person, cashISAAccount, savingsAccount}
+
 import scala.io.StdIn
-/**
-  * Created by digital032676 on 22/01/18.
-  */
-
-abstract class bankAccount(accountNumber: String, val balance: Double) {
-
-  def withdraw(amount: Double): bankAccount
-
-  def deposit(amount: Double): bankAccount
-}
-
-class savingsAccount(accountNumber: String, balance: Double) extends bankAccount(accountNumber, balance) {
-
-  override def withdraw(amount: Double): bankAccount = {
-    if ((balance - amount) < 0) {
-      println(s"You have insufficient funds")
-      this
-    } else {
-      val deducted = balance - amount
-        println(s"Balance after deductions: $deducted")
-      new savingsAccount(accountNumber, deducted)
-    }
-  }
-
-  override def deposit(amount: Double): bankAccount = {
-    new savingsAccount(accountNumber, balance + amount)
-  }
-}
-
-class cashISAAccount(accountNumber: String, balance: Double) extends bankAccount(accountNumber, balance) {
-
-  override def deposit(amount: Double) = new cashISAAccount(accountNumber, balance + amount)
-
-  override def withdraw(amount: Double) = {
-    println("You cant withdraw")
-    this
-  }
-}
-    class Person(name: String, age: Int, private val bankAccount: bankAccount) {
-
-      def this(name: String, age: Int) = this(name: String, age: Int, new savingsAccount("123", 0.00))
-
-      def this(name: String) = this(name: String, age = 0, new savingsAccount("123", 50.00))
-
-      private val years: String = if (age == 1) "year" else "years"
-
-      def greet(): Unit = {
-        if (name == "Matthew") {
-          println(s"Jog on Matthew you are $age $years old.")
-        } else {
-          println(s"Hello $name, you are $age $years old. \n You have ${bankAccount.balance}")
-        }
-      }
-    }
 
     object Prompt {
 
@@ -73,7 +21,11 @@ class cashISAAccount(accountNumber: String, balance: Double) extends bankAccount
       val SavingsAccount = new savingsAccount("12345", 99)
       val savingPlus100 = SavingsAccount.withdraw(100.00)
       val ISAaccount = new cashISAAccount("54321", 50.00)
-      val ISAPlus100 = ISAaccount.deposit(100.00)
+      val ISAdeposited = ISAaccount.deposit(1000.00)
+      val ISAwithdraw = ISAaccount.withdraw(250.00)
+      val personWithCashISA = new Person("Loyal Person", 54, ISAwithdraw)
+
+      println(personWithCashISA)
       println(SavingsAccount.balance)
       println(savingPlus100.balance)
       val David = new Person("David")
